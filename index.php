@@ -1,389 +1,308 @@
-<!DOCTYPE html>
-<html lang="en">
-    <head>
-      <head>
-       <!-- Global site tag (gtag.js) - Google Analytics -->
-      <script async src="https://www.googletagmanager.com/gtag/js?id=UA-110542988-1"></script>
-      <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<?php
+/**
+ * CodeIgniter
+ *
+ * An open source application development framework for PHP
+ *
+ * This content is released under the MIT License (MIT)
+ *
+ * Copyright (c) 2014 - 2017, British Columbia Institute of Technology
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in
+ * all copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
+ * THE SOFTWARE.
+ *
+ * @package	CodeIgniter
+ * @author	EllisLab Dev Team
+ * @copyright	Copyright (c) 2008 - 2014, EllisLab, Inc. (https://ellislab.com/)
+ * @copyright	Copyright (c) 2014 - 2017, British Columbia Institute of Technology (http://bcit.ca/)
+ * @license	http://opensource.org/licenses/MIT	MIT License
+ * @link	https://codeigniter.com
+ * @since	Version 1.0.0
+ * @filesource
+ */
 
-        gtag('config', 'UA-110542988-1');
-      </script>
-        <meta charset="utf-8">
-        <title>Kapeshare - Powered by Kapemug</title>
-        <meta name="description" content="Kapeshare, easily upload and share your files" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <!--Bootstrap 4-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
-        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
-        <!--icons-->
-        <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css" />
-        <link rel="stylesheet" href="css/style.css" />
-        <link rel="stylesheet" href="css/login_signup.css" />
-    </head>
-    <body>
-        <!--header-->
-        <nav class="navbar navbar-toggleable-md navbar-inverse fixed-top sticky-navigation">
-            <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="ion-grid icon-sm"></span>
-            </button>
-            <a class="navbar-brand hero-heading" href="#">KAPEMUG</a>
-            <div class="collapse navbar-collapse" id="navbarCollapse">
-                <ul class="navbar-nav ml-auto">
-                    <li class="nav-item mr-3">
-                        <a class="nav-link page-scroll" href="#signin">Sign In</a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+/*
+ *---------------------------------------------------------------
+ * APPLICATION ENVIRONMENT
+ *---------------------------------------------------------------
+ *
+ * You can load different configurations depending on your
+ * current environment. Setting the environment also influences
+ * things like logging and error reporting.
+ *
+ * This can be set to anything, but default usage is:
+ *
+ *     development
+ *     testing
+ *     production
+ *
+ * NOTE: If you change these, also change the error_reporting() code below
+ */
+	define('ENVIRONMENT', isset($_SERVER['CI_ENV']) ? $_SERVER['CI_ENV'] : 'development');
 
-        <!--main section-->
-        <section class="bg-texture hero" id="main">
-            <div class="container">
-                <div class="row d-md-flex brand">
-                    <div class="col-md-6 hidden-sm-down wow fadeIn">
-                        <img class="img-fluid mx-auto d-block" src="img/share.png"/>
-                    </div>
-                    <div class="col-md-6 col-sm-12 text-white wow fadeIn">
-                        <h2 class="pt-4">Secure <b class="text-primary-light">Share </b> with Kapeshare</h2>
-                        <p class="mt-5">
-                            Manage your files and share it to your trusted users.
-                        </p>
-                        <p class="mt-5">
-                            <a href="#signin" class="btn btn-primary mr-2 mb-2 page-scroll">Sign Up</a>
-                            <a href="#features" class="btn btn-white mb-2 page-scroll">Features</a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+/*
+ *---------------------------------------------------------------
+ * ERROR REPORTING
+ *---------------------------------------------------------------
+ *
+ * Different environments will require different levels of error reporting.
+ * By default development will show errors but testing and live will hide them.
+ */
+switch (ENVIRONMENT)
+{
+	case 'development':
+		error_reporting(-1);
+		ini_set('display_errors', 1);
+	break;
 
-        <!--features-->
-        <section class="bg-faded" id="features">
-            <div class="container">
-                <div class="row mb-3">
-                    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center wow fadeIn">
-                        <h2 class="text-primary">Amazing Features</h2>
-                        <p class="lead mt-4">
-                            Easily share your resources <br/>to restricted people.
-                        </p>
-                    </div>
-                </div>
-                <div class="row mt-5 text-center">
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-social-google -b-outline icon-md"></em>
-                                </div>
-                                <h6>Google Social</h6>
-                                <p>
-                                   Allow Google users to view and or manage your files
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-social-facebook icon-md"></em>
-                                </div>
-                                <h6>Facebook Community</h6>
-                                <p>
-                                    Let facebook authenticate your viewers and form a group.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-ios-settings icon-md"></em>
-                                </div>
-                                <h6>Advanced Rate Control</h6>
-                                <p>
-                                   Control you file based on advance configuration.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-ios-cloud-upload-outline icon-md"></em>
-                                </div>
-                                <h6>Unlimited Cloud Storage</h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-ios-locked-outline icon-md"></em>
-                                </div>
-                                <h6>Highly Secure</h6>
-                                <p>
-                                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consectetuer adipiscing elit.
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <div class="icon-box">
-                                    <em class="ion-android-notifications icon-md"></em>
-                                </div>
-                                <h6>Get Notified</h6>
-                                <p>
+	case 'testing':
+	case 'production':
+		ini_set('display_errors', 0);
+		error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED & ~E_STRICT & ~E_USER_NOTICE & ~E_USER_DEPRECATED);
+	break;
 
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+	default:
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'The application environment is not set correctly.';
+		exit(1); // EXIT_ERROR
+}
 
-        <section class="bg-alt p-0">
-            <div class="container-fluid">
-                <div class="row d-md-flex mt-5">
-                    <div class="col-sm-6 p-0 wow fadeInLeft">
-                        <img class="img-fluid" src="img/sharinicons.png" alt="Gallery">
-                    </div>
-                    <div class="col-sm-6 pl-5 pr-5 pt-5 pb-4 wow fadeInRight">
-                        <h3><a href="#">What makes Kapeshare Different?</a></h3>
-                        <p class="lead pt-4">Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</p>
-                        <ul class="pt-4 pb-3 list-default">
-                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                            <li>Aenean commodo ligula eget dolor.</li>
-                            <li>Aenean massa.</li>
-                            <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                            <li>Lorem ipsum dolor sit amet, consectetuer adipiscing elit.</li>
-                            <li>Aenean commodo ligula eget dolor.</li>
-                            <li>Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus.</li>
-                        </ul>
-                        <a href="#signin" class="btn btn-primary mr-2 page-scroll">Get Started with Kapeshare</a>
-                    </div>
-                </div>
-            </div>
-        </section>
+/*
+ *---------------------------------------------------------------
+ * SYSTEM DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * This variable must contain the name of your "system" directory.
+ * Set the path if it is not in the same directory as this file.
+ */
+	$system_path = 'system';
 
-        <!--pricing-->
-        <section class="bg-faded" id="pricing">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center">
-                        <h2 class="text-primary">Pricing</h2>
-                        <p class="lead pt-3">
-                          <em class="ion-heart"></em> Enjoy kapeshare till it's free <em class="ion-heart"></em>
-                        </p>
-                    </div>
-                </div>
-                <div class="row d-md-flex mt-4 text-center">
-                    <div class="col-sm-4 mt-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <h5 class="card-title pt-4 text-orange">Basic</h5>
-                                <h3 class="card-title text-primary pt-4">FREE</h3>
-                                <p class="card-text text-muted pb-3 border-bottom">per month</p>
-                                <ul class="list-unstyled pricing-list">
-                                    <li>Free setup</li>
-                                    <li>100MB storage</li>
-                                    <li>Basic support</li>
-                                </ul>
-                                <a href="#" class="btn btn-primary btn-radius">Sign up Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 mt-0 wow fadeIn">
-                        <div class="card pt-4 pb-4">
-                            <div class="card-block">
-                                <h5 class="card-title pt-4 text-orange">Standard <!--<small class="badge bg-primary small-xs">Popular</small>--></h5>
-                                <h3 class="card-title text-primary pt-4"><sup>$</sup> <em class="ion-happy"></em> </h3>
-                                <p class="card-text text-muted pb-3 border-bottom">per month</p>
-                                <ul class="list-unstyled pricing-list">
-                                    <li>Free setup</li>
-                                    <li>5GB storage</li>
-                                    <li>Priority support</li>
-                                </ul>
-                                <a href="#" class="btn btn-primary btn-radius">Sign up Now</a>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-sm-4 mt-4 wow fadeIn">
-                        <div class="card">
-                            <div class="card-block">
-                                <h5 class="card-title pt-4 text-orange">Advanced</h5>
-                                <h3 class="card-title text-primary pt-4"><sup>$</sup>  <em class="ion-happy"></em></h3>
-                                <p class="card-text text-muted pb-3 border-bottom">per month</p>
-                                <ul class="list-unstyled pricing-list">
-                                    <li>Free setup</li>
-                                    <li>Unlimited storage</li>
-                                    <li>24/7 support</li>
-                                </ul>
-                                <a href="#" class="btn btn-primary btn-radius">Order Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
+/*
+ *---------------------------------------------------------------
+ * APPLICATION DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want this front controller to use a different "application"
+ * directory than the default one you can set its name here. The directory
+ * can also be renamed or relocated anywhere on your server. If you do,
+ * use an absolute (full) server path.
+ * For more info please see the user guide:
+ *
+ * https://codeigniter.com/user_guide/general/managing_apps.html
+ *
+ * NO TRAILING SLASH!
+ */
+	$application_folder = 'application';
 
-        <!--download-->
-        <section class="bg-orange pt-0" id="download">
-            <div class="container">
-                <div class="row d-md-flex text-center wow fadeIn">
-                    <div class="col-md-6 offset-md-3 col-sm-10 offset-sm-1 col-xs-12">
-                        <h5 class="text-primary">SOON ON  </h5>
-                        <p class="mt-4">
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet.
-                            Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Lorem ipsum dolor sit amet.
-                        </p>
-                        <p class="mt-5">
-                            <a href="#" class="mr-2"><img src="img/google-play.png" class="store-img"/></a>
-                            <a href="#"><img src="img/apple_store.png" class="store-img"/> </a>
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!--team-->
-        <section class="bg-alt" id="signin">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center">
-                        <h2 class="text-primary">Connect with Kapeshare</h2>
-                        <p class="lead pt-3">
-
-                        </p>
-                    </div>
-                    <div class="cotn_principal">
-                      <div class="cont_centrar">
-
-                        <div class="cont_login">
-                      <div class="cont_info_log_sign_up">
-                            <div class="col_md_login">
-                      <div class="cont_ba_opcitiy">
-
-                              <h2>LOGIN</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-                        <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-                        </div>
-                        </div>
-                      <div class="col_md_sign_up">
-                      <div class="cont_ba_opcitiy">
-                        <h2>SIGN UP</h2>
+/*
+ *---------------------------------------------------------------
+ * VIEW DIRECTORY NAME
+ *---------------------------------------------------------------
+ *
+ * If you want to move the view directory out of the application
+ * directory, set the path to it here. The directory can be renamed
+ * and relocated anywhere on your server. If blank, it will default
+ * to the standard location inside your application directory.
+ * If you do move this, use an absolute (full) server path.
+ *
+ * NO TRAILING SLASH!
+ */
+	$view_folder = '';
 
 
-                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+/*
+ * --------------------------------------------------------------------
+ * DEFAULT CONTROLLER
+ * --------------------------------------------------------------------
+ *
+ * Normally you will set your default controller in the routes.php file.
+ * You can, however, force a custom routing by hard-coding a
+ * specific controller class/function here. For most applications, you
+ * WILL NOT set your routing here, but it's an option for those
+ * special instances where you might want to override the standard
+ * routing in a specific front controller that shares a common CI installation.
+ *
+ * IMPORTANT: If you set the routing here, NO OTHER controller will be
+ * callable. In essence, this preference limits your application to ONE
+ * specific controller. Leave the function name blank if you need
+ * to call functions dynamically via the URI.
+ *
+ * Un-comment the $routing array below to use this feature
+ */
+	// The directory name, relative to the "controllers" directory.  Leave blank
+	// if your controller is not in a sub-directory within the "controllers" one
+	// $routing['directory'] = '';
 
-                        <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-                      </div>
-                        </div>
-                             </div>
+	// The controller class file name.  Example:  mycontroller
+	// $routing['controller'] = '';
 
-
-                              <div class="cont_back_info">
-                                 <div class="cont_img_back_grey">
-                                 <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
-                                 </div>
-
-                              </div>
-                          <div class="cont_forms" >
-                              <div class="cont_img_back_">
-                                 <img src="https://images.unsplash.com/42/U7Fc1sy5SCUDIu4tlJY3_NY_by_PhilippHenzler_philmotion.de.jpg?ixlib=rb-0.3.5&q=50&fm=jpg&crop=entropy&s=7686972873678f32efaf2cd79671673d" alt="" />
-                                 </div>
-                           <div class="cont_form_login">
-                          <a href="#signin" onclick="ocultar_login_sign_up()" ><i class="ion-chevron-down"></i></a>
-                             <h2>LOGIN</h2>
-                           <input type="text" placeholder="Email" />
-                          <input type="password" placeholder="Password" />
-                          <button class="btn_login" onclick="cambiar_login()">LOGIN</button>
-                            </div>
-
-                             <div class="cont_form_sign_up">
-                          <a href="#signin" onclick="ocultar_login_sign_up()"><i class="ion-chevron-left"></i></a>
-                               <h2>SIGN UP</h2>
-                          <input type="text" placeholder="Email" />
-                          <input type="text" placeholder="User" />
-                          <input type="password" placeholder="Password" />
-                          <input type="password" placeholder="Confirm Password" />
-                          <button class="btn_sign_up" onclick="cambiar_sign_up()">SIGN UP</button>
-
-                            </div>
-
-                              </div>
-
-                            </div>
-                           </div>
-                          </div>
-                </div>
-                <div class="col-md-6 offset-md-3">
+	// The controller function you wish to be called.
+	// $routing['function']	= '';
 
 
-                </div>
-            </div>
-        </section>
+/*
+ * -------------------------------------------------------------------
+ *  CUSTOM CONFIG VALUES
+ * -------------------------------------------------------------------
+ *
+ * The $assign_to_config array below will be passed dynamically to the
+ * config class when initialized. This allows you to set custom config
+ * items or override any default config values found in the config.php file.
+ * This can be handy as it permits you to share one application between
+ * multiple front controller files, with each file containing different
+ * config values.
+ *
+ * Un-comment the $assign_to_config array below to use this feature
+ */
+	// $assign_to_config['name_of_config_item'] = 'value of config item';
 
 
-        <!--contact-->
-        <section class="bg-texture-collage p-0" id="contact">
-            <div class="container">
-                <div class="row d-md-flex text-white text-center wow fadeIn">
-                   <!-- <div class="col-sm-4 p-5">
-                        <p><em class="ion-ios-telephone-outline icon-md"></em></p>
-                        <p class="lead">+1 5456 87595</p>
-                    </div> -->
-                    <div class="col-sm-6 p-5">
-                        <p><em class="ion-ios-email-outline icon-md"></em></p>
-                        <p class="lead">info@kapemug.com</p>
-                    </div>
-                    <div class="col-sm-6 p-5">
-                        <p><em class="ion-ios-location-outline icon-md"></em></p>
-                        <p class="lead">Clark, Philippines</p>
-                    </div>
-                </div>
-            </div>
-        </section>
 
-        <!--footer-->
-        <section class="bg-footer" id="connect">
-            <div class="container">
-                <div class="row">
-                    <div class="col-md-6 offset-md-3 col-sm-8 offset-sm-2 col-xs-12 text-center wow fadeIn">
-                        <h1>Kapeshare</h1>
-                        <p class="mt-4">
-                            <a href="https://twitter.com/" target="_blank"><em class="ion-social-twitter text-twitter-alt icon-sm mr-3"></em></a>
-                            <a href="https://facebook.com/" target="_blank"><em class="ion-social-github text-facebook-alt icon-sm mr-3"></em></a>
-                            <a href="https://www.linkedin.com/" target="_blank"><em class="ion-social-linkedin text-linkedin-alt icon-sm mr-3"></em></a>
-                            <a href="https://plus.google.com/" target="_blank"><em class="ion-social-googleplus text-google-alt icon-sm mr-3"></em></a>
-                        </p>
-                        <p class="pt-2 text-muted">
-                            &copy; <?php echo date('Y');?> Kapemug
-                            <a href="https://kapemug.com">your solutions</a>.
-                        </p>
-                    </div>
-                </div>
-            </div>
-        </section>
+// --------------------------------------------------------------------
+// END OF USER CONFIGURABLE SETTINGS.  DO NOT EDIT BELOW THIS LINE
+// --------------------------------------------------------------------
 
-        <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js"></script>
-        <script src="http://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/wow/1.1.2/wow.js"></script>
-        <script src="js/scripts.js"></script>
-        <script src="js/login_signup.js"></script>
-    </body>
-</html>
+/*
+ * ---------------------------------------------------------------
+ *  Resolve the system path for increased reliability
+ * ---------------------------------------------------------------
+ */
+
+	// Set the current directory correctly for CLI requests
+	if (defined('STDIN'))
+	{
+		chdir(dirname(__FILE__));
+	}
+
+	if (($_temp = realpath($system_path)) !== FALSE)
+	{
+		$system_path = $_temp.DIRECTORY_SEPARATOR;
+	}
+	else
+	{
+		// Ensure there's a trailing slash
+		$system_path = strtr(
+			rtrim($system_path, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		).DIRECTORY_SEPARATOR;
+	}
+
+	// Is the system path correct?
+	if ( ! is_dir($system_path))
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your system folder path does not appear to be set correctly. Please open the following file and correct this: '.pathinfo(__FILE__, PATHINFO_BASENAME);
+		exit(3); // EXIT_CONFIG
+	}
+
+/*
+ * -------------------------------------------------------------------
+ *  Now that we know the path, set the main path constants
+ * -------------------------------------------------------------------
+ */
+	// The name of THIS file
+	define('SELF', pathinfo(__FILE__, PATHINFO_BASENAME));
+
+	// Path to the system directory
+	define('BASEPATH', $system_path);
+
+	// Path to the front controller (this file) directory
+	define('FCPATH', dirname(__FILE__).DIRECTORY_SEPARATOR);
+
+	// Name of the "system" directory
+	define('SYSDIR', basename(BASEPATH));
+
+	// The path to the "application" directory
+	if (is_dir($application_folder))
+	{
+		if (($_temp = realpath($application_folder)) !== FALSE)
+		{
+			$application_folder = $_temp;
+		}
+		else
+		{
+			$application_folder = strtr(
+				rtrim($application_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(BASEPATH.$application_folder.DIRECTORY_SEPARATOR))
+	{
+		$application_folder = BASEPATH.strtr(
+			trim($application_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your application folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('APPPATH', $application_folder.DIRECTORY_SEPARATOR);
+
+	// The path to the "views" directory
+	if ( ! isset($view_folder[0]) && is_dir(APPPATH.'views'.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.'views';
+	}
+	elseif (is_dir($view_folder))
+	{
+		if (($_temp = realpath($view_folder)) !== FALSE)
+		{
+			$view_folder = $_temp;
+		}
+		else
+		{
+			$view_folder = strtr(
+				rtrim($view_folder, '/\\'),
+				'/\\',
+				DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+			);
+		}
+	}
+	elseif (is_dir(APPPATH.$view_folder.DIRECTORY_SEPARATOR))
+	{
+		$view_folder = APPPATH.strtr(
+			trim($view_folder, '/\\'),
+			'/\\',
+			DIRECTORY_SEPARATOR.DIRECTORY_SEPARATOR
+		);
+	}
+	else
+	{
+		header('HTTP/1.1 503 Service Unavailable.', TRUE, 503);
+		echo 'Your view folder path does not appear to be set correctly. Please open the following file and correct this: '.SELF;
+		exit(3); // EXIT_CONFIG
+	}
+
+	define('VIEWPATH', $view_folder.DIRECTORY_SEPARATOR);
+
+/*
+ * --------------------------------------------------------------------
+ * LOAD THE BOOTSTRAP FILE
+ * --------------------------------------------------------------------
+ *
+ * And away we go...
+ */
+require_once BASEPATH.'core/CodeIgniter.php';
